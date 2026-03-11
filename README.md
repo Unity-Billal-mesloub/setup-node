@@ -1,9 +1,9 @@
 # setup-node
 
-[![basic-validation](https://github.com/actions/setup-node/actions/workflows/basic-validation.yml/badge.svg)](https://github.com/actions/setup-node/actions/workflows/basic-validation.yml)
-[![versions](https://github.com/actions/setup-node/actions/workflows/versions.yml/badge.svg)](https://github.com/actions/setup-node/actions/workflows/versions.yml)
-[![e2e-cache](https://github.com/actions/setup-node/actions/workflows/e2e-cache.yml/badge.svg?branch=main)](https://github.com/actions/setup-node/actions/workflows/e2e-cache.yml)
-[![proxy](https://github.com/actions/setup-node/actions/workflows/proxy.yml/badge.svg)](https://github.com/actions/setup-node/actions/workflows/proxy.yml)
+[![basic-validation](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/basic-validation.yml/badge.svg)](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/basic-validation.yml)
+[![versions](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/versions.yml/badge.svg)](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/versions.yml)
+[![e2e-cache](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/e2e-cache.yml/badge.svg?branch=main)](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/e2e-cache.yml)
+[![proxy](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/proxy.yml/badge.svg)](https://github.com/Unity-Billal-mesloub/setup-node/actions/workflows/proxy.yml)
 
 This action provides the following functionality for GitHub Actions users:
 
@@ -24,9 +24,9 @@ This action provides the following functionality for GitHub Actions users:
   > For workflows with elevated privileges or access to sensitive information, we recommend disabling automatic caching by setting `package-manager-cache: false` when caching is not needed for secure operation.
 
 - Upgraded action from node20 to node24.
-  > Make sure your runner is on version v2.327.1 or later to ensure compatibility with this release. [See Release Notes](https://github.com/actions/runner/releases/tag/v2.327.1)
+  > Make sure your runner is on version v2.327.1 or later to ensure compatibility with this release. [See Release Notes](https://github.com/Unity-Billal-mesloub/runner/releases/tag/v2.327.1)
 
-For more details, see the full release notes on the [releases page](https://github.com/actions/setup-node/releases/v5.0.0)
+For more details, see the full release notes on the [releases page](https://github.com/Unity-Billal-mesloub/setup-node/releases/v5.0.0)
 
 ## Usage
 
@@ -55,7 +55,7 @@ See [action.yml](action.yml)
     # Default: ''. The action use system architecture by default
     architecture: ''
 
-    # Used to pull node distributions from https://github.com/actions/node-versions.
+    # Used to pull node distributions from https://github.com/Unity-Billal-mesloub.
     # Since there's a default, this is typically not supplied by the user.
     # When running this action on github.com, the default value is sufficient.
     # When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting.
@@ -125,13 +125,13 @@ steps:
 
 The `node-version` input is optional. If not supplied, the node version from PATH will be used. However, it is recommended to always specify Node.js version and not rely on the system one.
 
-The action will first check the local cache for a semver match. If unable to find a specific version in the cache, the action will attempt to download a version of Node.js. It will pull LTS versions from [node-versions releases](https://github.com/actions/node-versions/releases) and on miss or failure will fall back to the previous behavior of downloading directly from [node dist](https://nodejs.org/dist/).
+The action will first check the local cache for a semver match. If unable to find a specific version in the cache, the action will attempt to download a version of Node.js. It will pull LTS versions from [node-versions releases](https://github.com/Unity-Billal-mesloub/node-versions/releases) and on miss or failure will fall back to the previous behavior of downloading directly from [node dist](https://nodejs.org/dist/).
 
-For information regarding locally cached versions of Node.js on GitHub hosted runners, check out [GitHub Actions Runner Images](https://github.com/actions/runner-images).
+For information regarding locally cached versions of Node.js on GitHub hosted runners, check out [GitHub Actions Runner Images](https://github.com/Unity-Billal-mesloub).
 
 ### Supported version syntax
 
-The `node-version` input supports the Semantic Versioning Specification, for more detailed examples please refer to [the semver package documentation](https://github.com/npm/node-semver).
+The `node-version` input supports the Semantic Versioning Specification, for more detailed examples please refer to [the semver package documentation](https://github.com/Unity-Billal-mesloub/node-semver).
 
 Examples:
 
@@ -140,7 +140,7 @@ Examples:
  - NVM LTS syntax: `lts/iron`, `lts/jod`, `lts/*`, `lts/-n`
  - Latest release: `*` or `latest`/`current`/`node`
 
-**Note:** Like the other values, `*` will get the latest [locally-cached Node.js version](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md#nodejs), or the latest version from [actions/node-versions](https://github.com/actions/node-versions/blob/main/versions-manifest.json), depending on the [`check-latest`](docs/advanced-usage.md#check-latest-version) input.
+**Note:** Like the other values, `*` will get the latest [locally-cached Node.js version](https://github.com/Unity-Billal-mesloub), or the latest version from [Unity-Billal-mesloub](https://github.com/Unity-Billal-mesloub), depending on the [`check-latest`](docs/advanced-usage.md#check-latest-version) input.
 
 `current`/`latest`/`node` always resolve to the latest [dist version](https://nodejs.org/dist/index.json).
 That version is then downloaded from actions/node-versions if possible, or directly from Node.js if not.
@@ -151,8 +151,6 @@ Since it will not be cached always, there is possibility of hitting rate limit w
 It's **strongly recommended** to commit the lockfile of your package manager for security and performance reasons. For more information consult the "Working with lockfiles" section of the [Advanced usage](docs/advanced-usage.md#working-with-lockfiles) guide.
 
 ## Caching global packages data
-
-The action has a built-in functionality for caching and restoring dependencies. It uses [actions/cache](https://github.com/actions/cache) under the hood for caching global packages data but requires less configuration settings. Supported package managers are `npm`, `yarn`, `pnpm` (v6.10+). The `cache` input is optional.
 
 The action defaults to search for the dependency file (`package-lock.json`, `npm-shrinkwrap.json` or `yarn.lock`) in the repository root, and uses its hash as a part of the cache key. Use `cache-dependency-path` for cases when multiple dependency files are used, or they are located in different subdirectories.
 
@@ -222,8 +220,6 @@ jobs:
 ```
 
 ## Using `setup-node` on GHES
-
-`setup-node` comes pre-installed on the appliance with GHES if Actions is enabled. When dynamically downloading Nodejs distributions, `setup-node` downloads distributions from [`actions/node-versions`](https://github.com/actions/node-versions) on github.com (outside of the appliance). These calls to `actions/node-versions` are made via unauthenticated requests, which are limited to [60 requests per hour per IP](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting). If more requests are made within the time frame, then you will start to see rate-limit errors during downloading that looks like: `##[error]API rate limit exceeded for...`. After that error the action will try to download versions directly from the official site, but it also can have rate limit so it's better to put token.
 
 To get a higher rate limit, you can [generate a personal access token on github.com](https://github.com/settings/tokens/new) and pass it as the `token` input for the action:
 
